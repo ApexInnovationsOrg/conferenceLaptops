@@ -24,7 +24,7 @@ ssh -p 999 bwhite@apexwebtest.com 'cd ~/apexwebtest/tasks/compileXML/ && php com
 echo "Saving course XMLs"
 rsync -avx -e "ssh -p 999" 'bwhite@apexwebtest.com:~/apexwebtest/tasks/compileXML/*.xml' "$OFFLINEFOLDER"
 rsync -avx -e "ssh -p 999" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/OFFLINE.swf' "$OFFLINEFOLDER"
-XMLs=$OFFLINEFOLDER'*.xml'
+XMLs=$OFFLINEFOLDER'*OFFLINE.xml'
 DESKTOP=$HOME'/Desktop'
 BLANK=''
 #make the swf know where to point and make shortcuts for the products on the desktop
@@ -33,15 +33,10 @@ for f in $XMLs
 do
   NOSUFFIX=${f%.xml}
   NOPREFIX=${NOSUFFIX##*/}
-  $(cd $OFFLINEFOLDER && cp OFFLINE.swf $NOPREFIX.swf)
+  cd $OFFLINEFOLDER && cp OFFLINE.swf $NOPREFIX.swf
   # PRODNAME='cat //courseware/@productName' | xmllint --shell "$f" | grep -v ">" | cut -f 2 -d "=" | tr -d \"
-
   PRODNAME=${NOPREFIX%OFFLINE}
-  # take action on each file. $f store current file name
-  if [ ! -f  $DESKTOP"/$PRODNAME" ]; then
-    echo $DESKTOP"/$PRODNAME"
-    ln -s $OFFLINEFOLDER$NOPREFIX.swf $DESKTOP"/$PRODNAME"
-  fi
-  echo "Completed Successfully!"
-  exit 0
+  ln -s -f $OFFLINEFOLDER$NOPREFIX.swf $DESKTOP"/$PRODNAME"
 done
+echo "Completed Successfully!"
+exit 0
