@@ -1,4 +1,5 @@
  #!/bin/bash
+ #generate keypair if none exists
 if [ ! -f  $HOME'/.ssh/id_rsa.pub' ]; then
 	echo "No keypair detected. Generating..."
 	ssh-keygen -b 2048 -t rsa -q -N ""
@@ -7,6 +8,7 @@ if [ ! -f  $HOME'/.ssh/id_rsa.pub' ]; then
 else
 	echo "Keypair detected. Can automatically ssh into apexwebtest"
 fi
+#grab updated files from AWT
 echo "Syncing from apexwebtest.com"
 REPOFOLDER=$HOME'/Desktop/courses/Offline/repository'
 mkdir -p $REPOFOLDER
@@ -17,6 +19,7 @@ mkdir -p $OFFLINEFOLDER
 rsync -avx 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/repository/PAGE_*' "$REPOFOLDER"
 rsync -avx 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/images/*' "$REPOFOLDERIMAGES"
 echo "Compiling course XMLs"
+#fire off the compileXML php script on apexwebtest
 ssh bwhite@apexwebtest.com 'cd ~/apexwebtest/tasks/compileXML/ && php compileXML.php'
 echo "Saving course XMLs"
 rsync -avx 'bwhite@apexwebtest.com:~/apexwebtest/tasks/compileXML/*.xml' "$OFFLINEFOLDER"
@@ -24,6 +27,7 @@ rsync -avx 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/OFFLINE.swf' "
 XMLs=$OFFLINEFOLDER'*.xml'
 DESKTOP=$HOME'/Desktop'
 BLANK=''
+#make the swf know where to point and make shortcuts for the products on the desktop
 echo "Generating SWF Launches and shortcuts"
 for f in $XMLs
 do
@@ -38,4 +42,6 @@ do
     echo $DESKTOP"/$PRODNAME"
     ln -s $OFFLINEFOLDER$NOPREFIX.swf $DESKTOP"/$PRODNAME"
   fi
+  echo "Completed Successfully!"
+  exit 0
 done
