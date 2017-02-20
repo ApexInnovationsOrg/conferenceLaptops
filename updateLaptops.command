@@ -16,14 +16,14 @@ REPOFOLDERIMAGES=$HOME'/Desktop/courses/Offline/repository/images'
 mkdir -p $REPOFOLDERIMAGES
 OFFLINEFOLDER=$HOME'/Desktop/courses/Offline/'
 mkdir -p $OFFLINEFOLDER
-rsync -avx -e "ssh -p 999" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/repository/PAGE_*' "$REPOFOLDER"
-rsync -avx -e "ssh -p 999" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/images/*' "$REPOFOLDERIMAGES"
+rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/repository/PAGE_*' "$REPOFOLDER"
+rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/images/*' "$REPOFOLDERIMAGES"
 echo "Compiling course XMLs"
 #fire off the compileXML php script on apexwebtest
-ssh -p 999 bwhite@apexwebtest.com 'cd ~/apexwebtest/tasks/compileXML/ && php compileXML.php'
+ssh bwhite@apexwebtest.com 'cd ~/apexwebtest/tasks/compileXML/ && php compileXML.php'
 echo "Saving course XMLs"
-rsync -avx -e "ssh -p 999" 'bwhite@apexwebtest.com:~/apexwebtest/tasks/compileXML/*.xml' "$OFFLINEFOLDER"
-rsync -avx -e "ssh -p 999" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/OFFLINE.swf' "$OFFLINEFOLDER"
+rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/tasks/compileXML/*.xml' "$OFFLINEFOLDER"
+rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/OFFLINE.swf' "$OFFLINEFOLDER"
 XMLs=$OFFLINEFOLDER'*OFFLINE.xml'
 DESKTOP=$HOME'/Desktop'
 BLANK=''
