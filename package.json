@@ -1,0 +1,21 @@
+{
+	"name": "conferencelaptops",
+	"version": "1.0.0",
+	"description": "This project contains scripts necessary to load the Apex conference laptops with local copies of the courseware for demo purposes.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"html5-generate": "node_modules/.bin/phantomjs html5-generate.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://bitbucket.org/objectivityinnovations/conferencelaptops.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"homepage": "https://bitbucket.org/objectivityinnovations/conferencelaptops#readme",
+	"dependencies": {
+		"fs-extra": "^6.0.1",
+		"phantomjs": "^2.1.7"
+	}
+}
