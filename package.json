@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"html5-generate": "node_modules/.bin/phantomjs html5-generate.js"
+		"html5-generate": "npm install; node_modules/.bin/phantomjs html5-generate.js"
 	},
 	"repository": {
 		"type": "git",
