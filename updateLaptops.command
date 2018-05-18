@@ -54,6 +54,8 @@ if which node > /dev/null
         brew install node
     fi
 echo "Pulling HTML5 courseware..."
+
+cd $DESKTOP/conferenceLaptops
 npm run html5-generate
 
 WEBSERVER=/Library/WebServer/Documents/Classroom/engine
