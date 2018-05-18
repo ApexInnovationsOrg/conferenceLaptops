@@ -72,7 +72,7 @@ function getHTMLForCourseID(courseID, callback) {
 
 					if (typeof callback === "function") callback(pageContents);
 
-				}, 12000);
+				}, 20000);
 
 			}, 5000);
 
