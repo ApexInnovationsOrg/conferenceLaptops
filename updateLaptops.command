@@ -38,5 +38,9 @@ do
   PRODNAME=${NOPREFIX%OFFLINE}
   ln -s -f $OFFLINEFOLDER$NOPREFIX.swf $DESKTOP"/$PRODNAME"
 done
+#creating the hemispheres 2.0 and canadian hemispheres 2.0 swfs....
+rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/TranswarpOffline.swf' "$OFFLINEFOLDER"
+cp "$OFFLINEFOLDER"/TranswarpOffline.swf "$OFFLINEFOLDER"/Hemispheres2.0OFFLINE.swf
+mv "$OFFLINEFOLDER"/TranswarpOffline.swf "$OFFLINEFOLDER"/CanadianHemispheres2.0OFFLINE.swf
 echo "Completed Successfully!"
 exit 0
