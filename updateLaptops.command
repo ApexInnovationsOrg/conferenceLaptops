@@ -20,6 +20,8 @@ rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/repos
 rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/images/*' "$REPOFOLDERIMAGES"
 echo "Compiling course XMLs"
 #fire off the compileXML php script on apexwebtest
+rm -f $OFFLINEFOLDER'*OFFLINE*'
+for i in $(file $HOME'/Desktop/*' | grep 'cannot open' | cut -d : -f 1); do rm $i; done
 ssh bwhite@apexwebtest.com 'cd ~/apexwebtest/tasks/compileXML/ && php compileXML.php'
 echo "Saving course XMLs"
 rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/tasks/compileXML/*.xml' "$OFFLINEFOLDER"
@@ -42,5 +44,29 @@ done
 rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/TranswarpOffline.swf' "$OFFLINEFOLDER"
 cp "$OFFLINEFOLDER"/TranswarpOffline.swf "$OFFLINEFOLDER"/Hemispheres2.0OFFLINE.swf
 mv "$OFFLINEFOLDER"/TranswarpOffline.swf "$OFFLINEFOLDER"/CanadianHemispheres2.0OFFLINE.swf
-echo "Completed Successfully!"
+echo "Completed Flash Courseware Successfully!"
+
+if which node > /dev/null
+    then
+        echo "node is installed, skipping..."
+    else
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        brew install node
+    fi
+echo "Pulling HTML5 courseware..."
+npm run html5-generate
+
+WEBSERVER=/Library/WebServer/Documents/Classroom/engine
+
+HTMLs=courseHTML/*OFFLINE.html
+for f in $HTMLs
+do
+  NOSUFFIX=${f%.html}
+  NOPREFIX=${NOSUFFIX##*/}
+  PRODNAME=${NOPREFIX%OFFLINE}
+  cp $f $WEBSERVER
+  ln -s -f $WEBSERVER/$f.html $DESKTOP"/$PRODNAME"
+done
+
+echo "Completed HTML5 Courseware Successfully!"
 exit 0
