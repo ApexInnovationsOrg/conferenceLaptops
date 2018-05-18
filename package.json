@@ -15,7 +15,7 @@
 	"license": "ISC",
 	"homepage": "https://bitbucket.org/objectivityinnovations/conferencelaptops#readme",
 	"dependencies": {
-		"fs-extra": "^6.0.1",
+		"fs": "0.0.1-security",
 		"phantomjs": "^2.1.7"
 	}
 }
