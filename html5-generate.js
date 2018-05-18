@@ -64,16 +64,18 @@ function getHTMLForCourseID(courseID, callback) {
 				}
 
 				// another wait for page loading
-				setTimeout(function() {
+				var coursewareCheck = setInterval(function() {
+					if (coursePage.content.indexOf("engineContainer") > -1) {
+						clearInterval(coursewareCheck);
+						coursewareCheck = undefined;
 
-					var pageContents = coursePage.evaluate(function() {
-						return document.documentElement.outerHTML;
-					});
+						var pageContents = coursePage.evaluate(function() {
+							return document.documentElement.outerHTML;
+						});
 
-					if (typeof callback === "function") callback(pageContents);
-
-				}, 20000);
-
+						if (typeof callback === "function") callback(pageContents);
+					}
+				}, 3000);
 			}, 5000);
 
 		} else {
