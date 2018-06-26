@@ -69,14 +69,18 @@ function getHTMLForCourseID(courseID, callback) {
 						clearInterval(coursewareCheck);
 						coursewareCheck = undefined;
 
-						var pageContents = coursePage.evaluate(function() {
-							return document.documentElement.outerHTML;
-						});
+						setTimeout(function() {
+							// little bit extra wait even though the courseware claims it's ready
 
-						if (typeof callback === "function") callback(pageContents);
+							var pageContents = coursePage.evaluate(function() {
+								return document.documentElement.outerHTML;
+							});
+
+							if (typeof callback === "function") callback(pageContents);
+						}, 5000);
 					}
 				}, 3000);
-			}, 5000);
+			}, 10000);
 
 		} else {
 
@@ -127,6 +131,12 @@ function writeCourseHTMLToFilesystem(course, callback) {
 
 			console.log("There are " + courses.length + " courses to process...");
 
+			var dotString = "";
+			var countingInterval = setInterval(function() {
+				dotString += ".";
+				console.log(dotString);
+			}, 1000);
+
 			for (var courseIndex in courses) {
 				! function(course) {
 
@@ -151,6 +161,7 @@ function writeCourseHTMLToFilesystem(course, callback) {
 							}
 
 							if (coursesProcessed === courses.length) {
+								clearInterval(countingInterval);
 								console.log("All course HTML successfully written to filesystem!");
 								phantom.exit();
 							}
