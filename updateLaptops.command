@@ -10,11 +10,12 @@ echo "Pulling HTML5 courseware..."
 
 DESKTOP=~/Desktop
 WEBSERVERROOT=/Library/WebServer/Documents
-WEBSERVERENGINE=$WEBSERVERROOT/Classroom
+WEBSERVERCLASSROOM=$WEBSERVERROOT/Classroom
+WEBSERVERENGINE=$WEBSERVERCLASSROOM/Engine
 
-if [ -d $WEBSERVERENGINE ] 
+if [ -d $WEBSERVERCLASSROOM ] 
 then
-    git -C $WEBSERVERENGINE pull
+    git -C $WEBSERVERCLASSROOM pull
 else
     git clone website_Classroom:ApexInnovationsOrg/website_Classroom Classroom && sudo mv Classroom $WEBSERVERROOT
 fi
