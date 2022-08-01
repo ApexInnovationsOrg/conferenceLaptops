@@ -17,13 +17,9 @@ then
 else
     git clone website_Classroom:ApexInnovationsOrg/website_Classroom Classroom && sudo mv Classroom $WEBSERVERROOT
 fi
-exit 0
-rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/repository/files/*' $WEBSERVERENGINE/repository/files/
-rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/_/*' $WEBSERVERENGINE/_/
-rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/includes/*' $WEBSERVERENGINE/includes/
-rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/font/*' $WEBSERVERROOT/font/
 
 cd $DESKTOP/conferenceLaptops
+npm install
 npm run html5-generate
 
 
