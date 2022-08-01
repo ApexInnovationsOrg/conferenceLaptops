@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"html5-generate": "node_modules/.bin/phantomjs html5-generate.js"
+		"html5-generate": "node_modules/.bin/phantomjs html5-generate.js",
+		"getCourses": "node getCourses.js"
 	},
 	"repository": {
 		"type": "git",
@@ -16,6 +17,7 @@
 	"homepage": "https://github.com/ApexInnovationsOrg/conferenceLaptops.git#readme",
 	"dependencies": {
 		"fs": "0.0.1-security",
-		"phantomjs-prebuilt": "^2.1.16"
+		"phantomjs-prebuilt": "^2.1.16",
+		"puppeteer": "^15.5.0"
 	}
 }
