@@ -51,8 +51,7 @@ do
   NOPREFIX=${NOSUFFIX##*/}
   PRODNAME=${NOPREFIX% OFFLINE}
   echo "Pulling assets from S3 for $PRODNAME"
-  aws s3 cp "s3://apex-ace/$PRODNAME/" "$WEBSERVERROOT/$PRODNAME/" --recursive
-done
+  aws s3 sync "s3://apex-ace/$PRODNAME/" "$WEBSERVERROOT/$PRODNAME/"
 
 echo "Pulled all assets Successfully!"
 exit 0
