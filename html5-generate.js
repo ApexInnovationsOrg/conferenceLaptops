@@ -103,7 +103,7 @@ function writeCourseHTMLToFilesystem(course, callback) {
 	}
 
 	try {
-		var path = ("courseHTML/" + course.Name + " OFFLINE.html").replace(/[\s]/g, "");
+		var path = ("courseHTML/" + course.Name + " OFFLINE.html");
 		fs.write(path, course.HTML);
 		if (typeof callback === "function") callback();
 
