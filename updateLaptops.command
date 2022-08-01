@@ -1,13 +1,4 @@
  #!/bin/bash
- #generate keypair if none exists
-if [ ! -f  $HOME'/.ssh/id_rsa.pub' ]; then
-	echo "No keypair detected. Generating..."
-	ssh-keygen -b 2048 -t rsa -q -N ""
-	echo "Keypair generated. Insert bwhite@apexwebtest.com password."
-	cat ~/.ssh/id_rsa.pub | ssh bwhite@apexwebtest.com "mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys"
-else
-	echo "Keypair detected. Can automatically ssh into apexwebtest"
-fi
 
 if which node > /dev/null
     then
@@ -18,8 +9,15 @@ if which node > /dev/null
 echo "Pulling HTML5 courseware..."
 
 WEBSERVERROOT=/Library/WebServer/Documents
-WEBSERVERENGINE=$WEBSERVERROOT/Classroom/engine
+WEBSERVERENGINE=$WEBSERVERROOT/Classroom
 
+if [ -d $WEBSERVERENGINE ] 
+then
+    git -C $WEBSERVERENGINE pull
+else
+    git clone website_Classroom:ApexInnovationsOrg/website_Classroom $WEBSERVERENGINE
+fi
+exit 0
 rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/repository/files/*' $WEBSERVERENGINE/repository/files/
 rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/_/*' $WEBSERVERENGINE/_/
 rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/includes/*' $WEBSERVERENGINE/includes/
