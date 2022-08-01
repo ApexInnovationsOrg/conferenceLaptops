@@ -15,7 +15,7 @@ if [ -d $WEBSERVERENGINE ]
 then
     git -C $WEBSERVERENGINE pull
 else
-    cd $WEBSERVERROOT && git clone website_Classroom:ApexInnovationsOrg/website_Classroom Classroom
+    git clone website_Classroom:ApexInnovationsOrg/website_Classroom Classroom && sudo mv Classroom $WEBSERVERROOT
 fi
 exit 0
 rsync -avx -e "ssh" 'bwhite@apexwebtest.com:~/apexwebtest/Classroom/engine/repository/files/*' $WEBSERVERENGINE/repository/files/
