@@ -49,9 +49,9 @@ for f in $HTMLs
 do
   NOSUFFIX=${f%.html}
   NOPREFIX=${NOSUFFIX##*/}
-  PRODNAME=${NOPREFIX%OFFLINE}
+  PRODNAME=${NOPREFIX% OFFLINE}
   echo "Pulling assets from S3 for $PRODNAME"
-  aws s3 cp s3://apex-ace/$PRODNAME/ $WEBSERVERROOT/$PRODNAME --recursive
+  aws s3 cp "s3://apex-ace/$PRODNAME/" "$WEBSERVERROOT/$PRODNAME/" --recursive
 done
 
 echo "Pulled all assets Successfully!"
