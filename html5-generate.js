@@ -120,7 +120,7 @@ function writeCourseHTMLToFilesystem(course, callback) {
 
 	// get courses
 	console.log("Getting courses...");
-	outerPage.open("http://apexwebtest.com/conferenceLaptops/compileHTML/compile.php", "post", {}, function(status) {
+	outerPage.open("https://apexwebtest.com/conferenceLaptops/compile.php?CONFERENCE_LAPTOPS_KEY=eeyJrdW0ondatUC5cPWC", "post", {}, function(status) {
 		console.log("Status: " + status);
 		if (status === "success") {
 
