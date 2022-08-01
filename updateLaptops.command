@@ -8,6 +8,7 @@ if which node > /dev/null
     fi
 echo "Pulling HTML5 courseware..."
 
+DESKTOP=~/Desktop
 WEBSERVERROOT=/Library/WebServer/Documents
 WEBSERVERENGINE=$WEBSERVERROOT/Classroom
 
@@ -19,8 +20,7 @@ else
 fi
 
 cd $DESKTOP/conferenceLaptops
-npm install
-npm run html5-generate
+npm install && npm run html5-generate
 
 
 HTMLs=courseHTML/*OFFLINE.html
