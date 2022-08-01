@@ -34,7 +34,16 @@ do
   touch $DESKTOP"/$PRODNAME.webloc"
   echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>URL</key><string>http://localhost/Classroom/engine/'$PRODNAME'OFFLINE.html</string></dict></plist>' > $DESKTOP"/$PRODNAME.webloc"
 done
+echo "Downloaded all HTML Successfully!"
 
+for f in $HTMLs
+do
+  NOSUFFIX=${f%.html}
+  NOPREFIX=${NOSUFFIX##*/}
+  PRODNAME=${NOPREFIX%OFFLINE}
+  echo "Pulling assets from S3 for $PRODNAME"
+  aws s3 cp s3://apex-ace/$PRODNAME $WEBSERVERROOT/$PRODNAME --recursive
+done
 
-echo "Completed HTML5 Courseware Successfully!"
+echo "Pulled all assets Successfully!"
 exit 0
