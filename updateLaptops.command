@@ -8,6 +8,15 @@ if which node > /dev/null
     fi
 echo "Pulling HTML5 courseware..."
 
+
+echo "Cleaning environment"
+if [ -d ./courseHTML ] ; then
+    rm -r ./courseHTML
+fi
+
+rm ~/Desktop/*.webloc
+
+
 DESKTOP=~/Desktop
 WEBSERVERROOT=/Library/WebServer/Documents
 WEBSERVERCLASSROOM=$WEBSERVERROOT/Classroom
