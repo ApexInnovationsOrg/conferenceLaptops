@@ -73,7 +73,7 @@ function getHTMLForCourseID(courseID, callback) {
 							// little bit extra wait even though the courseware claims it's ready
 
 							var pageContents = coursePage.evaluate(function() {
-								return document.documentElement.outerHTML.replaceAll('https:', 'http:');;
+								return document.documentElement.outerHTML.replaceAll('https:', 'http:');
 							});
 							
 							if (typeof callback === "function") callback(pageContents);

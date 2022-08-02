@@ -13,7 +13,7 @@ const writeCourseHTMLToFilesystem = async (course, callback) => {
 	}
 
 	try {
-		var path = ("courseHTML/" + course.Name + "OFFLINE.html").replace(/[\s]/g, "");
+		var path = ("courseHTML/" + course.Name + " OFFLINE.html");
 		await fs.writeFileSync(path, course.HTML, err =>{
             if(err){
                 console.error(err);
@@ -67,12 +67,12 @@ const getHTMLForCourseID = async (courseID, callback) => {
                     setTimeout(async ()=> {
                         // little bit extra wait even though the courseware claims it's ready
                         var pageContents = await page.evaluate(() =>{
-                            return document.documentElement.outerHTML;
+                            return document.documentElement.outerHTML.replaceAll('https:', 'http:');
                         });
 
                         if (typeof callback === "function") callback(pageContents);
                         await browser.close();
-                    }, 5000);
+                    }, 30000);
                 
             }, 10000);
 

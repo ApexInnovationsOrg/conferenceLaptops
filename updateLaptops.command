@@ -30,7 +30,7 @@ else
 fi
 
 cd $DESKTOP/conferenceLaptops
-npm install && npm run html5-generate
+npm install && npm run getCourses
 
 
 HTMLs=courseHTML/*OFFLINE.html
