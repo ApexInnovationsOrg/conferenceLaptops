@@ -70,6 +70,7 @@ do
 done
 
 aws s3 sync "s3://apex-ace/Hemispheres 2.0 - HTML/" "$WEBSERVERROOT/Hemispheres 2.0 - HTML/"
+aws s3 sync "s3://apex-ace/Canadian Hemispheres 3.0/" "$WEBSERVERROOT/Canadian Hemispheres 3.0/"
 aws s3 sync "s3://apex-ace/Snapshots/" "$WEBSERVERROOT/Snapshots/"
 aws s3 sync "s3://apex-ace/Sandbox/" "$WEBSERVERROOT/Sandbox/"
 
