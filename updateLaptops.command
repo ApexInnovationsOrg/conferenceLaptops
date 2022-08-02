@@ -39,9 +39,10 @@ do
   NOSUFFIX=${f%.html}
   NOPREFIX=${NOSUFFIX##*/}
   PRODNAME=${NOPREFIX% OFFLINE}
+  URLENCODE = ${NOPREFIX/ /%20}
   sudo cp "$f" $WEBSERVERENGINE
   touch $DESKTOP"/$PRODNAME.webloc"
-  echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>URL</key><string>http://localhost/Classroom/engine/'$PRODNAME'OFFLINE.html</string></dict></plist>' > $DESKTOP"/$PRODNAME.webloc"
+  echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>URL</key><string>http://localhost/Classroom/engine/'$URLENCODE'.html</string></dict></plist>' > $DESKTOP"/$PRODNAME.webloc"
 done
 echo "Downloaded all HTML Successfully!"
 
