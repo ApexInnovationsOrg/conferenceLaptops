@@ -70,7 +70,7 @@ do
 done
 
 aws s3 sync "s3://apex-ace/Snapshots/" "$WEBSERVERROOT/Snapshots/"
-aws s3 sync "s3://apex-ace/Snapshots/" "$WEBSERVERROOT/Sandbox/"
+aws s3 sync "s3://apex-ace/Sandbox/" "$WEBSERVERROOT/Sandbox/"
 
 echo "Pulled all assets Successfully!"
 exit 0
