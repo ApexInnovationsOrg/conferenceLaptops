@@ -52,6 +52,7 @@ do
   PRODNAME=${NOPREFIX% OFFLINE}
   echo "Pulling assets from S3 for $PRODNAME"
   aws s3 sync "s3://apex-ace/$PRODNAME/" "$WEBSERVERROOT/$PRODNAME/"
+done
 
 echo "Pulled all assets Successfully!"
 exit 0
