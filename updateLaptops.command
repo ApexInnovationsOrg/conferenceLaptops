@@ -69,8 +69,11 @@ do
   aws s3 sync "s3://apex-ace/$PRODNAME/" "$WEBSERVERROOT/$PRODNAME/"
 done
 
+aws s3 sync "s3://apex-ace/Hemispheres 2.0 - HTML/" "$WEBSERVERROOT/Hemispheres 2.0 - HTML/"
 aws s3 sync "s3://apex-ace/Snapshots/" "$WEBSERVERROOT/Snapshots/"
 aws s3 sync "s3://apex-ace/Sandbox/" "$WEBSERVERROOT/Sandbox/"
+
+#aws s3 cp "s3://apex-ace" "$WEBSERVERROOT" --recursive --exclude "*/*"
 
 echo "Pulled all assets Successfully!"
 exit 0
