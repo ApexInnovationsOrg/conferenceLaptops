@@ -67,7 +67,7 @@ const getHTMLForCourseID = async (courseID, callback) => {
                     setTimeout(async ()=> {
                         // little bit extra wait even though the courseware claims it's ready
                         var pageContents = await page.evaluate(() =>{
-                            return document.documentElement.outerHTML.replaceAll('https:', 'http:');
+                            return document.documentElement.outerHTML.replaceAll('https:', 'http:').replaceAll('/ACE/fileMaker/','');
                         });
 
                         if (typeof callback === "function") callback(pageContents);
