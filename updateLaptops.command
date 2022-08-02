@@ -13,6 +13,7 @@ echo "Cleaning environment"
 if [ -d ./courseHTML ] ; then
     rm -r ./courseHTML
 fi
+mkdir ./courseHTML
 
 rm ~/Desktop/*.webloc
 
