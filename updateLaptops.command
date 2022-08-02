@@ -55,5 +55,7 @@ do
   aws s3 sync "s3://apex-ace/$PRODNAME/" "$WEBSERVERROOT/$PRODNAME/"
 done
 
+aws s3 sync "s3://apex-ace/Snapshots/" "$WEBSERVERROOT/Snapshots/"
+
 echo "Pulled all assets Successfully!"
 exit 0
