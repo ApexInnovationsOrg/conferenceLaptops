@@ -35,6 +35,8 @@ then
     git -C ./website_root pull
 else
     git clone website_root:ApexInnovationsOrg/website_root
+    sudo mkdir -p $WEBSERVERROOT/grfx
+    sudo mkdir -p $WEBSERVERROOT/css
 fi
 
 sudo cp -r ./website_root/grfx $WEBSERVERROOT
@@ -68,6 +70,7 @@ do
 done
 
 aws s3 sync "s3://apex-ace/Snapshots/" "$WEBSERVERROOT/Snapshots/"
+aws s3 sync "s3://apex-ace/Snapshots/" "$WEBSERVERROOT/Sandbox/"
 
 echo "Pulled all assets Successfully!"
 exit 0
