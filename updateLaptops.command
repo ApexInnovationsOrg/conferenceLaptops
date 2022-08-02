@@ -30,8 +30,19 @@ else
     git clone website_Classroom:ApexInnovationsOrg/website_Classroom Classroom && sudo mv Classroom $WEBSERVERROOT
 fi
 
+if [ -d ./website_root ] 
+then
+    git -C ./website_root pull
+else
+    git clone website_root:ApexInnovationsOrg/website_root
+fi
+
+sudo cp -r ./website_root/grfx $WEBSERVERROOT
+sudo cp -r ./website_root/css $WEBSERVERROOT
+
 cd $DESKTOP/conferenceLaptops
 npm install && npm run getCourses
+
 
 
 HTMLs=courseHTML/*OFFLINE.html
